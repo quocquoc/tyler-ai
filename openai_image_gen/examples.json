@@ -1,0 +1,83 @@
+[
+  {
+    "full_example_prompt": "Neo-Kyoto Syndicate characters reimagined for a Street Fighter style game cover. Featuring a 'Cyborg Samurai with a plasma katana' and a 'Psionic Street Punk with glowing fists' in dynamic, signature fighting poses. The scene is set on a neon-drenched, rain-slicked futuristic city rooftop, with vibrant energy trails from their attacks and holographic advertisements flickering in the background. The logo \"Kyoto Clash\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Neo-Kyoto Syndicate",
+    "Character 1": "a 'Cyborg Samurai with a plasma katana'",
+    "Character 2": "a 'Psionic Street Punk with glowing fists'",
+    "Background Setting/Environment": "a neon-drenched, rain-slicked futuristic city rooftop",
+    "Lighting Style & Effect": "vibrant energy trails from their attacks and holographic advertisements flickering in the background",
+    "Poster Title": "Kyoto Clash"
+  },
+  {
+    "full_example_prompt": "Guardians of the Verdant Realm characters reimagined for a Street Fighter style game cover. Featuring a 'Mystic Druid wielding nature's fury' and a 'Corrupted Elemental Golem' in dynamic, signature fighting poses. The scene is set in an enchanted forest with oversized glowing mushrooms, with swirling magical energies, bright green spell effects, and explosive earth-shattering impacts. The logo \"Verdant Fury\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Guardians of the Verdant Realm",
+    "Character 1": "a 'Mystic Druid wielding nature's fury'",
+    "Character 2": "a 'Corrupted Elemental Golem'",
+    "Background Setting/Environment": "an enchanted forest with oversized glowing mushrooms",
+    "Lighting Style & Effect": "swirling magical energies, bright green spell effects, and explosive earth-shattering impacts",
+    "Poster Title": "Verdant Fury"
+  },
+  {
+    "full_example_prompt": "Celestial Starfighters characters reimagined for a Street Fighter style game cover. Featuring a 'Solar-Powered Hero in golden armor' and a 'Void-Channeling Alien Warlord' in dynamic, signature fighting poses. The scene is set on an alien planet's crystalline surface with two suns in the sky, with brilliant light beams clashing with dark void tendrils, lens flares and cosmic dust. The logo \"Star Vindicator\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Celestial Starfighters",
+    "Character 1": "a 'Solar-Powered Hero in golden armor'",
+    "Character 2": "a 'Void-Channeling Alien Warlord'",
+    "Background Setting/Environment": "an alien planet's crystalline surface with two suns in the sky",
+    "Lighting Style & Effect": "brilliant light beams clashing with dark void tendrils, lens flares and cosmic dust",
+    "Poster Title": "Star Vindicator"
+  },
+  {
+    "full_example_prompt": "Pirates of the Crimson Tides characters reimagined for a Street Fighter style game cover. Featuring a 'Swashbuckling Captain with a flintlock pistol and cutlass' and a 'Mysterious Sea Witch commanding spectral water' in dynamic, signature fighting poses. The scene is set on the deck of a storm-tossed galleon, with crashing waves, flashes of gunpowder, and eerie glowing water tendrils. The logo \"Crimson Combat\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Pirates of the Crimson Tides",
+    "Character 1": "a 'Swashbuckling Captain with a flintlock pistol and cutlass'",
+    "Character 2": "a 'Mysterious Sea Witch commanding spectral water'",
+    "Background Setting/Environment": "the deck of a storm-tossed galleon",
+    "Lighting Style & Effect": "crashing waves, flashes of gunpowder, and eerie glowing water tendrils",
+    "Poster Title": "Crimson Combat"
+  },
+  {
+    "full_example_prompt": "Dynasty of the Jade Serpent characters reimagined for a Street Fighter style game cover. Featuring a 'Wise Martial Arts Master with flowing robes' and a 'Powerful Sorcerer wielding dark chi' in dynamic, signature fighting poses. The scene is set in a serene temple courtyard with cherry blossoms falling, with focused chi energy blasts meeting shadowy magical attacks, petals swirling in the wind. The logo \"Jade Fist\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Dynasty of the Jade Serpent",
+    "Character 1": "a 'Wise Martial Arts Master with flowing robes'",
+    "Character 2": "a 'Powerful Sorcerer wielding dark chi'",
+    "Background Setting/Environment": "a serene temple courtyard with cherry blossoms falling",
+    "Lighting Style & Effect": "focused chi energy blasts meeting shadowy magical attacks, petals swirling in the wind",
+    "Poster Title": "Jade Fist"
+  },
+  {
+    "full_example_prompt": "Wasteland Raiders characters reimagined for a Street Fighter style game cover. Featuring a 'Rugged Scavenger with a modified shotgun' and a 'Mutant Brute with oversized claws' in dynamic, signature fighting poses. The scene is set in a post-apocalyptic desert settlement made of scrap metal, with dusty, orange-hued lighting, muzzle flashes, and powerful ground slams causing debris to fly. The logo \"Desert Duel\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Wasteland Raiders",
+    "Character 1": "a 'Rugged Scavenger with a modified shotgun'",
+    "Character 2": "a 'Mutant Brute with oversized claws'",
+    "Background Setting/Environment": "a post-apocalyptic desert settlement made of scrap metal",
+    "Lighting Style & Effect": "dusty, orange-hued lighting, muzzle flashes, and powerful ground slams causing debris to fly",
+    "Poster Title": "Desert Duel"
+  },
+  {
+    "full_example_prompt": "Champions of Olympus characters reimagined for a Street Fighter style game cover. Featuring a 'Demigod Hero with a thunderbolt spear' and a 'Gorgon Huntress with a petrifying gaze' in dynamic, signature fighting poses. The scene is set on the steps of a majestic ancient Greek temple, with divine golden light clashing with dark green stone-gaze effects, lightning crackling. The logo \"Olympian Might\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Champions of Olympus",
+    "Character 1": "a 'Demigod Hero with a thunderbolt spear'",
+    "Character 2": "a 'Gorgon Huntress with a petrifying gaze'",
+    "Background Setting/Environment": "the steps of a majestic ancient Greek temple",
+    "Lighting Style & Effect": "divine golden light clashing with dark green stone-gaze effects, lightning crackling",
+    "Poster Title": "Olympian Might"
+  },
+  {
+    "full_example_prompt": "Agents of Chronos characters reimagined for a Street Fighter style game cover. Featuring a 'Time-Traveling Operative with temporal gadgets' and a 'Paradox Anomaly creature' in dynamic, signature fighting poses. The scene is set in a swirling vortex of distorted time and space, with shimmering temporal distortion fields, glowing energy from gadgets, and fractured reality effects. The logo \"Time Tangle\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Agents of Chronos",
+    "Character 1": "a 'Time-Traveling Operative with temporal gadgets'",
+    "Character 2": "a 'Paradox Anomaly creature'",
+    "Background Setting/Environment": "a swirling vortex of distorted time and space",
+    "Lighting Style & Effect": "shimmering temporal distortion fields, glowing energy from gadgets, and fractured reality effects",
+    "Poster Title": "Time Tangle"
+  },
+  {
+    "full_example_prompt": "Gladiators of the Galactic Arena characters reimagined for a Street Fighter style game cover. Featuring an 'Armored Alien Gladiator with an energy shield' and a 'Nimble Human Mercenary with laser blasters' in dynamic, signature fighting poses. The scene is set in a high-tech alien arena with cheering crowds in the background (blurred), with bright energy shield deflections, laser fire trails, and dramatic spotlights. The logo \"Arena Supreme\", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.",
+    "Franchise/Series": "Gladiators of the Galactic Arena",
+    "Character 1": "an 'Armored Alien Gladiator with an energy shield'",
+    "Character 2": "a 'Nimble Human Mercenary with laser blasters'",
+    "Background Setting/Environment": "a high-tech alien arena with cheering crowds in the background (blurred)",
+    "Lighting Style & Effect": "bright energy shield deflections, laser fire trails, and dramatic spotlights",
+    "Poster Title": "Arena Supreme"
+  }
+]

@@ -10,200 +10,62 @@ client = OpenAI(
     organization=os.getenv("OPENAI_ORGANIZATION")
 )
 
-prompt = """
+# Array of prompts
+prompts = [
+    """
+    Neo-Kyoto Syndicate characters reimagined for a Street Fighter style game cover. Featuring a 'Cyborg Samurai with a plasma katana' and a 'Psionic Street Punk with glowing fists' in dynamic, signature fighting poses. The scene is set on a neon-drenched, rain-slicked futuristic city rooftop, with vibrant energy trails from their attacks and holographic advertisements flickering in the background. The logo "Kyoto Clash", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.    """,
+    """,
+    """
+    Guardians of the Verdant Realm characters reimagined for a Street Fighter style game cover. Featuring a 'Mystic Druid wielding nature's fury' and a 'Corrupted Elemental Golem' in dynamic, signature fighting poses. The scene is set in an enchanted forest with oversized glowing mushrooms, with swirling magical energies, bright green spell effects, and explosive earth-shattering impacts. The logo "Verdant Fury", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Celestial Starfighters characters reimagined for a Street Fighter style game cover. Featuring a 'Solar-Powered Hero in golden armor' and a 'Void-Channeling Alien Warlord' in dynamic, signature fighting poses. The scene is set on an alien planet's crystalline surface with two suns in the sky, with brilliant light beams clashing with dark void tendrils, lens flares and cosmic dust. The logo "Star Vindicator", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Pirates of the Crimson Tides characters reimagined for a Street Fighter style game cover. Featuring a 'Swashbuckling Captain with a flintlock pistol and cutlass' and a 'Mysterious Sea Witch commanding spectral water' in dynamic, signature fighting poses. The scene is set on the deck of a storm-tossed galleon, with crashing waves, flashes of gunpowder, and eerie glowing water tendrils. The logo "Crimson Combat", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Dynasty of the Jade Serpent characters reimagined for a Street Fighter style game cover. Featuring a 'Wise Martial Arts Master with flowing robes' and a 'Powerful Sorcerer wielding dark chi' in dynamic, signature fighting poses. The scene is set in a serene temple courtyard with cherry blossoms falling, with focused chi energy blasts meeting shadowy magical attacks, petals swirling in the wind. The logo "Jade Fist", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Wasteland Raiders characters reimagined for a Street Fighter style game cover. Featuring a 'Rugged Scavenger with a modified shotgun' and a 'Mutant Brute with oversized claws' in dynamic, signature fighting poses. The scene is set in a post-apocalyptic desert settlement made of scrap metal, with dusty, orange-hued lighting, muzzle flashes, and powerful ground slams causing debris to fly. The logo "Desert Duel", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Champions of Olympus characters reimagined for a Street Fighter style game cover. Featuring a 'Demigod Hero with a thunderbolt spear' and a 'Gorgon Huntress with a petrifying gaze' in dynamic, signature fighting poses. The scene is set on the steps of a majestic ancient Greek temple, with divine golden light clashing with dark green stone-gaze effects, lightning crackling. The logo "Olympian Might", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Agents of Chronos characters reimagined for a Street Fighter style game cover. Featuring a 'Time-Traveling Operative with temporal gadgets' and a 'Paradox Anomaly creature' in dynamic, signature fighting poses. The scene is set in a swirling vortex of distorted time and space, with shimmering temporal distortion fields, glowing energy from gadgets, and fractured reality effects. The logo "Time Tangle", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """,
+    """
+    Gladiators of the Galactic Arena characters reimagined for a Street Fighter style game cover. Featuring an 'Armored Alien Gladiator with an energy shield' and a 'Nimble Human Mercenary with laser blasters' in dynamic, signature fighting poses. The scene is set in a high-tech alien arena with cheering crowds in the background (blurred), with bright energy shield deflections, laser fire trails, and dramatic spotlights. The logo "Arena Supreme", redesigned in the iconic Street Fighter font and style, is prominently displayed and fully integrated within the central composition of the image, ensuring clear visibility and no cropping. Hyper-detailed, vibrant colors, intense contrast, cinematic composition.
+    """
+]
+
+# Create output directory if it doesn't exist
+os.makedirs("images_output", exist_ok=True)
+
+# Process each prompt
+for index, prompt in enumerate(prompts, start=1):
+    print(f"Generating image {index}...")
     
-import os
+    result = client.images.generate(
+        model="gpt-image-1",
+        prompt=prompt
+    )
 
-from pydantic import BaseModel
+    image_base64 = result.data[0].b64_json
+    image_bytes = base64.b64decode(image_base64)
 
-from crewai.flow import Flow, listen, start, and_
-from crewai import Agent, Task, Crew, LLM
-from composio_crewai import ComposioToolSet, Action, App
-
-from crews.research_crew.research_crew import ResearchCrew
-from crews.summary_crew.summary_crew import SummaryCrew
-
-from dotenv import load_dotenv
-
-load_dotenv()
-
-composio_toolset = ComposioToolSet(api_key=os.getenv("COMPOSIO_API_KEY"))
-google_create_find_folder = composio_toolset.get_tools(actions=['GOOGLEDRIVE_CREATE_FOLDER', 'GOOGLEDRIVE_FIND_FOLDER', 'GOOGLEDRIVE_DELETE_FOLDER_OR_FILE'])
-google_upload_file = composio_toolset.get_tools(actions=['GOOGLEDRIVE_FIND_FOLDER', 'GOOGLEDRIVE_UPLOAD_FILE', 'GOOGLEDRIVE_CREATE_FILE_FROM_TEXT'])
-slack_toolset = composio_toolset.get_tools(actions=['SLACK_SENDS_A_MESSAGE_TO_A_SLACK_CHANNEL'])
-
-openai_llm = LLM(model="gpt-4o", temperature=0)
-
-class WorkOutResearch(BaseModel):
-    research: str = ""
-    links: list[str] = []
-
-class DriveFolder(BaseModel):
-    id: str = ""
-    name: str = ""
-    parent_id: str = ""
-    created_at: str = ""
-
-class WorkOutState(BaseModel):
-    drive_folder_id: str = ""
-    drive_folder: str = "Workout"
-    doc_file_path: str = "workout_plan.docx"
-    csv_file_path: str = "workout_plan.csv"
-    workout: str = ""
-    csv_workout: str = ""
-    research: WorkOutResearch = WorkOutResearch()
-    summary: str = ""
+    # Save the image with incremental name
+    image_name = f"image_gen_{index}.png"
+    output_path = os.path.join("images_output", image_name)
     
-class WorkOutFlow(Flow[WorkOutState]):
+    with open(output_path, "wb") as f:
+        f.write(image_bytes)
+    
+    print(f"Saved image as {image_name}")
 
-    @start()    
-    def create_or_retrieve_drive_folder(self):
-        # Define agent
-        crewai_agent = Agent(
-            role="Google Drive Agent",
-            goal="You are an AI agent that is responsible for taking actions based on the tools you have",
-            backstory=(
-                "You are an AI agent that is responsible for taking actions based on the tools you have"
-            ),
-            verbose=True,
-            tools=google_create_find_folder,
-            llm=openai_llm
-        )
-        task = Task(
-            description=f"Check if there is a folder called {self.state.drive_folder}.  If there is no folder,then create a new folder in Google Drive called {self.state.drive_folder}.  There is no parent folder so it should be empty, this is the root.",
-            agent=crewai_agent,
-            expected_output="Just the id of the folder"
-        )
-        my_crew = Crew(agents=[crewai_agent], tasks=[task])
-
-        result = my_crew.kickoff()
-        
-        self.state.drive_folder_id = result.raw
-
-    @listen(create_or_retrieve_drive_folder)
-    def research_workouts(self):
-        result = (
-            ResearchCrew()
-            .crew()
-            .kickoff()
-        )
-
-        self.state.research = result.pydantic
-
-    @listen(research_workouts)
-    def summarize_workouts(self):
-        result = (
-            SummaryCrew()
-            .crew()
-            .kickoff(inputs={"workout": self.state.workout})
-        )
-
-        self.state.summary = result.raw
-
-    @listen(summarize_workouts)
-    async def create_doc_workout_plan(self, workout: str):
-        crewai_agent = Agent(
-            role="Workout Plan Agent",
-            goal="You are an AI agent that is responsible for creating a workout plan.",
-            backstory=(
-                "You are an AI agent that is responsible for creating a workout plan"
-            ),
-            verbose=True,
-            llm=openai_llm
-        )
-        task = Task(
-            description=f"Create a workout plan based on the following information: {workout}.  The workout plan shouldn't be in markdown format, it should be in a format that can be easily read by a human for a word document.",
-            agent=crewai_agent,
-            expected_output="A workout plan in a format that can be easily read by a human for a word document."
-        )
-        my_crew = Crew(agents=[crewai_agent], tasks=[task])
-        result = my_crew.kickoff()
-        
-        self.state.workout = result.raw
-        
-    @listen(summarize_workouts)
-    async def create_csv_workout_plan(self, workout: str):
-        crewai_agent = Agent(
-            role="Workout Plan Agent",
-            goal="You are an AI agent that is responsible for creating a workout plan.",
-            backstory=(
-                "You are an AI agent that is responsible for creating a workout plan"
-            ),
-            verbose=True,
-            llm=openai_llm
-        )
-        task = Task(
-            description=f"Create a workout plan based on the following information: {workout}.  The workout plan should be in a csv format.  Also give days of the week, and how many reps per workout for each day.  Make sure the csv is as detailed as possible.",
-            agent=crewai_agent,
-            expected_output="The whole workout plan in a csv format."
-        )
-        my_crew = Crew(agents=[crewai_agent], tasks=[task])
-        result = my_crew.kickoff()
-        
-        self.state.csv_workout = result.raw
-
-    @listen(and_(create_doc_workout_plan, create_csv_workout_plan))
-    def save_workout_plan(self):
-        crewai_agent = Agent(
-            role="Google Drive Agent",
-            goal="You are an AI agent that is responsible for taking actions based on the tools you have",
-            backstory=(
-                "You are an AI agent that is responsible for taking actions based on the tools you have"
-            ),
-            verbose=True,
-            tools=google_upload_file,
-            llm=openai_llm
-        )
-        task = Task(
-            description=f"Create two files: {self.state.doc_file_path} with the content {self.state.workout} and then {self.state.csv_file_path} with the content: {self.state.csv_workout}, and the parent folder id: {self.state.drive_folder_id} for both files.",
-            agent=crewai_agent,
-            expected_output="If it was successful or not."
-        )
-        
-        my_crew = Crew(agents=[crewai_agent], tasks=[task])
-        my_crew.kickoff()
-        
-    @listen(save_workout_plan)
-    async def send_slack_message(self):
-        crewai_agent = Agent(
-            role="Slack Agent",
-            goal="You are an AI agent that is responsible for taking actions based on the tools you have",
-            backstory=(
-                "You are AI agent that is responsible for taking actions based on the tools you have"
-            ),
-            verbose=True,
-            tools=slack_toolset,
-            llm=openai_llm,
-        )
-        task = Task(
-            description=f"Send a message to the Slack channel #general with the workout plan: {self.state.workout}",
-            agent=crewai_agent,
-            expected_output="The message sent"
-        )
-        my_crew = Crew(agents=[crewai_agent], tasks=[task])
-        my_crew.kickoff()
-        
-def kickoff():
-    workout_flow = WorkOutFlow()
-    workout_flow.plot()
-    workout_flow.kickoff()
-
-if __name__ == "__main__":
-    kickoff()
-
-"""
-
-result = client.images.generate(
-    model="gpt-image-1",
-    prompt=prompt
-)
-
-image_base64 = result.data[0].b64_json
-image_bytes = base64.b64decode(image_base64)
-
-# Save the image to a file
-with open("images_output/image_gen1.png", "wb") as f:
-    f.write(image_bytes)
+print("All images have been generated successfully!")
     
     
     
